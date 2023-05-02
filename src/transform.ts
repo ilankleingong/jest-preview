@@ -353,7 +353,7 @@ postcss(plugins)
   }
   const tempFileName = createTempFile(processPostCssFileContent);
   // We have to write this file to disk since Windows cannot process the command with long arguments
-  const result = spawnSync('node', [tempFileName]);
+  const result = spawnSync('node', [tempFileName], {maxBuffer: 10 * 1024 * 1024});
   fs.unlink(tempFileName, (error) => {
     if (error) throw error;
   });
