@@ -468,7 +468,7 @@ export function processLess(filename: string): string {
   });`;
 
   const tempFileName = createTempFile(processLessFileContent);
-  const result = spawnSync('node', [tempFileName]);
+  const result = spawnSync('node',[tempFileName], {maxBuffer: 10 * 1024 * 1024});
   fs.unlink(tempFileName, (error) => {
     if (error) throw error;
   });
